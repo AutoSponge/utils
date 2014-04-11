@@ -6,6 +6,7 @@
 // `-> guarded( ...{Any} )`
 // `-> fn.apply( this, n-arguments )`
 // guarded functions will only pass n arguments or fewer when invoked
+
 module.exports = function leave( n ) {
     return function leaveFn( fn ) {
         return function guarded() {

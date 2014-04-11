@@ -4,6 +4,7 @@
 // `ncurry( n{Integer||null}, fn{Function}, ...{Any} )`
 // `-> ncurry( ...{Any} ) || fn.apply( this, n-arguments )`
 // if `n` is `null`, the function's length will be used as `n`
+
 function ncurry( n, fn ) {
     var fnn = n === null ? fn.length : n;
     if ( arguments.length >= fnn + 2 ) {
