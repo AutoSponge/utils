@@ -1,7 +1,7 @@
 utils
 =====
 
-utility functions, may based on _part_
+utility functions, many based on _part_
 
 Build a file with specific utilities:
 
