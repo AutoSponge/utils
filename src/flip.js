@@ -6,6 +6,7 @@
 // `-> fn.call( receiver, b, a )`
 
 module.exports = function flip( fn, receiver ) {
+    'use strict';
     return function flop( a, b ) {
         return fn.call( receiver, b, a );
     };

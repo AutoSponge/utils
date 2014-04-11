@@ -11,6 +11,10 @@ Build a file with all utilities:
 
 `browserify ./src/utils.js -t ./build > utils.js`
 
+or
+
+`npm run build-all`
+
 Run tests:
 
 `npm test`

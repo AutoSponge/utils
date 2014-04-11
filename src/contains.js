@@ -6,6 +6,7 @@
 // `-> {Boolean}`
 
 module.exports = function ( needle ) {
+    'use strict';
     return function search( haystack ) {
         return haystack && haystack.indexOf ?
                haystack.indexOf( needle ) > -1 :
