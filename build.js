@@ -3,7 +3,8 @@ var fs = require( 'fs' );
 var all = fs.readdirSync( 'src' );
 var removeList = [
     'utils',
-    '_'
+    '_',
+    'namespace'
 ];
 
 function removeKeys( key ) {
@@ -30,7 +31,10 @@ module.exports = function ( file, options ) {
 
     function end() {
         keys.forEach( function ( key ) {
-            source += "global." + key + " = require( './" + key + "' );\n";
+            source += (!options.namespace ?
+                       'global.' + key :
+                       'module.exports["' + key + '"]') +
+                ' = require( "./' + key + '" );\n';
         } );
 
         this.queue( source );

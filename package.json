@@ -6,10 +6,20 @@
     "jshint-stylish": "^0.1.5",
     "part": "^0.1.1",
     "tape": "^2.12.3",
+    "tape-run": "^0.1.1",
     "through": "^2.3.4"
   },
   "scripts": {
-    "test": "jshint --reporter=node_modules/jshint-stylish/stylish.js src/*.js && cr -M 110 -C 3 -D 11 -f minimal src/*.js && tape test/*.js",
-    "build-all": "browserify ./src/utils.js -t ./build > utils.js"
+    "test": "tape test/*.js",
+    "test-phantom": "browserify test/*.js | tape-run",
+    "test-safari": "browserify test/*.js | tape-run -b safari",
+    "test-chrome": "browserify test/*.js | tape-run -b chrome",
+    "test-firefox": "browserify test/*.js | tape-run -b firefox",
+    "test-ie": "browserify test/*.js | tape-run -b ie",
+    "coverage": "cr -M 110 -C 3 -D 11 -f minimal src/*.js",
+    "jshint": "jshint --reporter=node_modules/jshint-stylish/stylish.js src/*.js",
+    "build": "npm run jshint && npm run coverage && npm test && npm run build-globals",
+    "build-globals": "browserify ./src/utils.js -t ./build > utils.js",
+    "build-utils": "browserify ./src/utils.js -s utils -t [ ./build --namespace ] > utils.js"
   }
 }
