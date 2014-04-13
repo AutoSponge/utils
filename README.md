@@ -41,7 +41,7 @@ Run tests in a browser (using tape-run):
 
 ## Docs
 
-[docs](http://autosponge.github.io/utils/docs/)
+[docs](http://autosponge.github.io/utils/doc/)
 
 ## TODO
 
