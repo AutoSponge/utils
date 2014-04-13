@@ -20,6 +20,7 @@
     "jshint": "jshint --reporter=node_modules/jshint-stylish/stylish.js src/*.js",
     "build": "npm run jshint && npm run coverage && npm test && npm run build-globals",
     "build-globals": "browserify ./src/utils.js -t ./build > utils.js",
-    "build-utils": "browserify ./src/utils.js -s utils -t [ ./build --namespace ] > utils.js"
+    "build-utils": "browserify ./src/utils.js -s utils -t [ ./build --namespace ] > utils.js",
+    "docs": "groc"
   }
 }

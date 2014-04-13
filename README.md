@@ -39,6 +39,10 @@ Run tests in a browser (using tape-run):
 - `npm run test-safari`
 - `npm run test-ie`
 
+## Docs
+
+[docs](http://autosponge.github.io/utils/docs/)
+
 ## TODO
 
 - generate docs
