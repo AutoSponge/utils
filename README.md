@@ -3,29 +3,25 @@ utils
 
 utility functions, many based on _part_
 
-Build a file with specific utilities as globals:
+Build the default file with specific utilities as globals:
 
-`browserify ./src/utils.js -t [ ./build --ncurry --compose ] > utils.js`
+`node build.js ncurry compose`
 
-Build a file with specific utilities in a namespace:
+Build the default file with specific utilities in a namespace:
 
-`browserify ./src/utils.js -s utils -t [ ./build --namespace --ncurry --compose ] > utils.js`
+`node build.js namespace=utils ncurry compose`
 
-Build a file with all utilities as globals:
+Build the default file with all utilities as globals:
 
-`browserify ./src/utils.js -t ./build > utils.js`
+`node build.js`
 
-or
+Build the default file with all utilities in the 'utils' namespace:
 
-`npm run build-globals`
+`node build.js namespace=utils`
 
-Build a file with all utilities in the 'utils' namespace:
+Build a specific file
 
-`browserify ./src/utils.js -s utils -t [ ./build --namespace ] > utils.js`
-
-or
-
-`npm run build-utils`
+`node build.js output=myfile.js`
 
 Run tests:
 
@@ -45,5 +41,4 @@ Run tests in a browser (using tape-run):
 
 ## TODO
 
-- generate docs
 - figure out why phantom fails with some dependencies

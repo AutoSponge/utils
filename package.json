@@ -2,6 +2,7 @@
   "devDependencies": {
     "browserify": "^3.39.0",
     "complexity-report": "^1.0.2",
+    "glob": "^3.2.9",
     "groc": "^0.6.3",
     "jshint": "^2.5.0",
     "jshint-stylish": "^0.1.5",
@@ -19,9 +20,7 @@
     "test-ie": "browserify test/*.js | tape-run -b ie",
     "coverage": "cr -M 110 -C 3 -D 11 -f minimal src/*.js",
     "jshint": "jshint --reporter=node_modules/jshint-stylish/stylish.js src/*.js",
-    "build": "npm run jshint && npm run coverage && npm test && npm run build-globals",
-    "build-globals": "browserify ./src/utils.js -t ./build > utils.js",
-    "build-utils": "browserify ./src/utils.js -s utils -t [ ./build --namespace ] > utils.js",
+    "build": "npm run jshint && npm run coverage && npm test && node build.js",
     "docs": "groc"
   }
 }

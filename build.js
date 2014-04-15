@@ -1,45 +1,73 @@
-var through = require( 'through' );
+var browserify = require( 'browserify' );
 var fs = require( 'fs' );
+var through = require('through');
+var glob = require( 'glob' ).sync;
 var all = fs.readdirSync( 'src' );
+var options = {};
 var removeList = [
+    'global',
     'utils',
-    '_',
     'namespace'
 ];
-
-function removeKeys( key ) {
+var removeKeys = function ( key ) {
     return removeList.indexOf( key ) === -1;
-}
-
-function removeExtension( key ) {
+};
+var removeExtension = function ( key ) {
     return key.replace( '.js', '' );
+};
+var allKeys = all.map( removeExtension )
+    .filter( removeKeys );
+
+var keys = process.argv.slice( 2 ).filter(function ( val ) {
+    var split = val.split( '=' );
+    if ( split[1] ) {
+        options[split[0]] = split[1];
+        return false;
+    }
+    return allKeys.indexOf( val ) > -1;
+});
+
+var b = browserify();
+if ( !keys.length ) {
+    keys = allKeys;
+    glob( './src/*.js' ).map( function ( filename ) {
+        b.add( filename );
+    } );
+} else {
+    ['utils'].concat( keys ).map( function ( key ) {
+        console.log( __dirname + '/src/' + key + '.js' );
+        b.add( __dirname + '/src/' + key + '.js' );
+    } );
 }
 
-module.exports = function ( file, options ) {
+b.transform(function (file/*, options*/) {
     var source = '';
-    var keys = Object.keys( options )
-        .filter( removeKeys );
-
-    if ( !keys.length ) {
-        keys = all.map( removeExtension )
-            .filter( removeKeys );
-    }
 
     function read( chunk ) {
         source += chunk;
     }
 
     function end() {
-        keys.forEach( function ( key ) {
-            source += (!options.namespace ?
-                       'global.' + key :
-                       'module.exports["' + key + '"]') +
-                ' = require( "./' + key + '" );\n';
-        } );
+        var filename = file.split( '/' ).slice( -1 )[0];
+        if ( filename === 'utils.js' ) {
+            console.log( keys );
+            keys.forEach( function ( key, i ) {
+                if ( options.namespace ) {
+                    if ( i === 0 ) {
+                        source += 'var ' + options.namespace + '= {};\n';
+                        source += 'global.' + options.namespace + ' = ' +  options.namespace + ';\n';
+                    }
+                    source += options.namespace + '.' + key + ' = require( "./' + key + '" );\n';
+                } else {
+                    source += 'global.' + key + ' = require( "./' + key + '" );\n';
+                }
+            } );
+        }
 
         this.queue( source );
         this.queue( null );
     }
 
     return through( read, end );
-};
+});
+b.bundle().pipe( fs.createWriteStream( options.output || 'utils.js' ) );
