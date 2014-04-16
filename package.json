@@ -24,6 +24,6 @@
   },
   "dependencies": {
     "part": "^0.1.1",
-    "part-native": "^0.1.0"
+    "part-native": "^0.1.2"
   }
 }
