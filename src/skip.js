@@ -5,4 +5,4 @@
 // `-> _part( {List} )`
 // `-> {Array}`
 
-module.exports = require( './leave')( 1 )( require( './slice_' ) );
+module.exports = require( './leave')( 1 )( require( 'part-native' )( 'Array.slice_' ) );

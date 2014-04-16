@@ -1,5 +1,6 @@
 {
     "glob": ["src/**/*.js", "README.md", "lib/styles/*/style.sass", "lib/styles/*/*.jade"],
     "out": "./doc",
-    "github": true
+    "github": false
+
 }

@@ -4,5 +4,6 @@
 // `pipeline( fns{List} )`
 // `-> fn( x )`
 // `-> a( b( c( x ) ) )`
-
-module.exports = module.exports = require( './papply' )( require( './reduce_' )( require( './flip' )( require( './call_' )( null ) ) ) );
+var native = require( 'part-native' );
+module.exports = require( 'part' )
+    .papply( native( 'Array.reduce_' )( require( './flip' )( native( 'Function.call_' )( null ) ) ) );

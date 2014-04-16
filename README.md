@@ -42,3 +42,8 @@ Run tests in a browser (using tape-run):
 ## TODO
 
 - figure out why phantom fails with some dependencies
+- groc the built file
+- documentation
+- test the build file(s)
+- build a no globals version
+

@@ -54,6 +54,7 @@ b.transform(function (file/*, options*/) {
             keys.forEach( function ( key, i ) {
                 if ( options.namespace ) {
                     if ( i === 0 ) {
+                        source += '/** @module ' + options.namespace + ' */\n';
                         source += 'var ' + options.namespace + '= {};\n';
                         source += 'global.' + options.namespace + ' = ' +  options.namespace + ';\n';
                     }
