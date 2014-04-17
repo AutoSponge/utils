@@ -1,5 +1,6 @@
 var browserify = require( 'browserify' );
 var fs = require( 'fs' );
+var path = require( 'path' );
 var through = require('through');
 var glob = require( 'glob' ).sync;
 var all = fs.readdirSync( 'src' );
@@ -48,7 +49,7 @@ b.transform(function (file/*, options*/) {
     }
 
     function end() {
-        var filename = file.split( /[\\\/]/ ).slice( -1 )[0];
+        var filename = path.basename(file);
         if ( filename === 'utils.js' ) {
             console.log( keys );
             keys.forEach( function ( key, i ) {
