@@ -48,7 +48,7 @@ b.transform(function (file/*, options*/) {
     }
 
     function end() {
-        var filename = file.split( '/' ).slice( -1 )[0];
+        var filename = file.split( /[\\\/]/ ).slice( -1 )[0];
         if ( filename === 'utils.js' ) {
             console.log( keys );
             keys.forEach( function ( key, i ) {
