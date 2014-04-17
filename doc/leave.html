@@ -1,0 +1,12 @@
+<!DOCTYPE html><html lang="en"><head><title>leave</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="leave"><meta name="groc-project-path" content="src/leave.js"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">src/leave.js</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h2 id="leave">leave</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p><code>leave( [n{Integer}] )</code>
+<code>-&gt; leaveFn( fn{Function} )</code>
+<code>-&gt; guarded( ...{Any} )</code>
+<code>-&gt; fn.apply( this, n-arguments )</code>
+guarded functions will only pass n arguments or fewer when invoked</p></div></div><div class="code"><div class="wrapper"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">leave</span><span class="p">(</span> <span class="nx">n</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+    <span class="k">return</span> <span class="kd">function</span> <span class="nx">leaveFn</span><span class="p">(</span> <span class="nx">fn</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kd">function</span> <span class="nx">guarded</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">fn</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span> <span class="k">this</span><span class="p">,</span> <span class="nx">require</span><span class="p">(</span> <span class="s1">&#39;./take&#39;</span> <span class="p">)(</span> <span class="nx">n</span> <span class="p">)(</span> <span class="nx">arguments</span> <span class="p">)</span> <span class="p">);</span>
+        <span class="p">};</span>
+    <span class="p">};</span>
+<span class="p">};</span></div></div></div></div></body></html>
